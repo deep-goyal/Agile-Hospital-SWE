@@ -7,30 +7,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class LogIn {
-    public static void main(String[] args) {
-        landingPage();
-    }
-
-    public static void landingPage() {
-        // user info variables
-        String username, password;
-
-        // internal use variable(s)
-        Scanner input = new Scanner(System.in);
-
-        do {
-            System.out.println("User Log-In Menu:");
-            System.out.println("==================================");
-
-            System.out.print("Username: ");
-            username = input.nextLine();
-
-            System.out.print("Password: ");
-            password = input.nextLine();
-        } while (!validateLoginInfo(username, password));
-    }
-
-    private static boolean validateLoginInfo(String username, String password) {
+   
+    public static boolean validateLoginInfo(String username, String password) {
         String userFilePath = "userData" + File.separator + username + ".json";
         boolean userFileExists = Files.exists(Paths.get(userFilePath));
         String userPasswordOnFile = "";
