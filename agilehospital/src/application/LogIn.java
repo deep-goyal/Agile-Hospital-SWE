@@ -39,7 +39,7 @@ public class LogIn {
         return false;
     }
 
-    private static String getPasswordOnFile(String filePath) throws IOException {
+    public static String getPasswordOnFile(String filePath) throws IOException {
         String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
 
         String targetKey = "\"password\":\"";
