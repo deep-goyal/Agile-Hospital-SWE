@@ -18,7 +18,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -29,12 +28,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	String directoryPath = "userData";
-    	File directory = new File(directoryPath);
-    	if (!directory.exists()) {
-    	    directory.mkdirs();
-    	}
-    	
     	//define the root
     	BorderPane root = new BorderPane();
     	
