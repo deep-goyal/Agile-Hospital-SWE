@@ -1,6 +1,8 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -19,6 +21,11 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class Main extends Application {
+	
+	String userNameText = "";
+	String passText = "";
+	boolean success;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
     	//define the root
@@ -35,15 +42,20 @@ public class Main extends Application {
         HBox userName = new HBox();
         Text userLabel = new Text("Username: ");
         TextField userNameField = new TextField();
+        userNameField.setPromptText("Required");
         
         //password hbox
         HBox passBox = new HBox();
         Text passLabel = new Text("Password: ");
         TextField passField = new TextField();
+        passField.setPromptText("Required");
         
         //login button
         HBox loginBox = new HBox();
         Button loginButton = new Button("Login");
+        
+        //success message
+        Text successMessage = new Text("");
         
         //bottom pane
         
@@ -55,8 +67,6 @@ public class Main extends Application {
         Button forgotButton = new Button("Forgot Password");
         
         HBox bottomButtons = new HBox();
-        
-        
         
         //alignment
         userName.setAlignment(Pos.CENTER);
@@ -78,6 +88,32 @@ public class Main extends Application {
         loginBox.getChildren().add(loginButton);
         vbox.getChildren().addAll(userName, passBox, loginBox);
         bottomButtons.getChildren().addAll(forgotButton, createAcc);
+        
+      //capture texts after button pressed (EVENT HANDLER)
+        EventHandler<ActionEvent> loginHandler = new EventHandler<ActionEvent>() {
+        	@Override
+        	public void handle(ActionEvent e) {
+        		if (e.getSource() instanceof Button) {
+        			Button srcbtn = (Button) e.getSource();
+        			
+        			if (srcbtn.getText().equals("Login")) {
+		        		userNameText = userNameField.getText();
+		        		passText = passField.getText();
+		        		success = LogIn.validateLoginInfo(userNameText, passText);
+		        		
+		        		if (success) {
+		                	successMessage.setText("Success, you are logged in");
+		                } else {
+		                	successMessage.setText("Login failed! Retry!!");
+		                }
+		        		
+		        		vbox.getChildren().add(successMessage);
+        			}
+        		}
+        	}
+        };
+        
+        loginButton.setOnAction(loginHandler);
         
         //set root's top to title
         root.setTop(title);

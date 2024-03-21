@@ -1,7 +1,11 @@
 package application;
 
+import java.io.IOException;
+import java.time.LocalDate;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -110,7 +114,24 @@ public class CreateAccountView {
                 "What is the name of the manufacturer of your first car?",
                 "What is your favorite sport?"
         };
-        ChoiceBox cb_security_question = new ChoiceBox(FXCollections.observableArrayList(sq));
+
+		ChoiceBox cb_security_question = new ChoiceBox(FXCollections.observableArrayList(sq));
+
+        cb_security_question.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected option: " + newValue);
+
+            if (newValue == "What was the name of your first pet?"){
+                securityQuestion = 1;
+            } else if (newValue == "What was the name of your first school?"){
+                securityQuestion = 2;
+            } else if (newValue == "What year did you enter college?"){
+                securityQuestion = 3;
+            } else if (newValue == "What is the name of the manufacturer of your first car?"){
+                securityQuestion = 4;
+            } else if (newValue == "What is your favorite sport?"){
+                securityQuestion = 5;
+            }
+        });
 
         cb_security_question.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("Selected option: " + newValue);
