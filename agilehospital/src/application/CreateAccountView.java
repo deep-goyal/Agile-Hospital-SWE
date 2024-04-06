@@ -133,6 +133,22 @@ public class CreateAccountView {
             }
         });
 
+        cb_security_question.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected option: " + newValue);
+
+            if (newValue == "What was the name of your first pet?"){
+                securityQuestion = 1;
+            } else if (newValue == "What was the name of your first school?"){
+                securityQuestion = 2;
+            } else if (newValue == "What year did you enter college?"){
+                securityQuestion = 3;
+            } else if (newValue == "What is the name of the manufacturer of your first car?"){
+                securityQuestion = 4;
+            } else if (newValue == "What is your favorite sport?"){
+                securityQuestion = 5;
+            }
+        });
+
         HBox hb_Security_Question = createHBox(275, 450, 30);
         Label label_sq = new Label("Security Question");
         hb_Security_Question.getChildren().addAll(label_sq, cb_security_question);
