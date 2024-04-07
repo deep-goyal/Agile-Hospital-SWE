@@ -16,7 +16,7 @@ public class initialization {
         String dbName = "PermaDB";
         
         String user = "root";
-        String password = "Droxol@270.";
+        String password = "";
 
         createTempDatabase(url, tempDbName, user, password);
 
