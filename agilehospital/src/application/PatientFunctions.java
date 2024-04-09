@@ -33,9 +33,9 @@ public class PatientFunctions {
 	        return new File(filePath).exists();
         }
         
-        public static String[] getPatientReportData(String patientID) throws IOException {
+        public static String[] getPatientPrescription(String patientID) throws IOException {
             String presPath = PRESCRIPTIONDIRECTORY + File.separator + patientID + "_PatientPrescription.txt";
-            if (!checkPatientInfoExists(patientID)) {
+            if (!checkPatientPresExists(patientID)) {
                 throw new IOException("Perscription file for patient ID " + patientID + " does not exist.");
             }
 
