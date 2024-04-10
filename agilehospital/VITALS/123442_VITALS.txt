@@ -1,3 +1,0 @@
-"Weight: 143#Height: 133#Body Tempurature: 135312#Blood Pressure: 135312#Health Concerns: 1234132#Allergies : 1234312"
-"Weight: 9000#Height: 9000#Body Tempurature: 9000#Blood Pressure: 9000#Health Concerns: 9000#Allergies : 9000#Immunization : 9000"
-"Weight: 2000#Height: 2000#Body Tempurature: 2000#Blood Pressure: 2000#Health Concerns: spine#Allergies : penauts#Immunization : HIV"

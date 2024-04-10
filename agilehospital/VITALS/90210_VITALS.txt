@@ -1,3 +1,0 @@
-"Weight: 1#Height: 5#Body Tempurature: 100#Blood Pressure: 100#Health Concerns: none
-#Allergies : none
-"

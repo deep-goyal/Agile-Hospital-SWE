@@ -1,3 +1,0 @@
-"Weight: 70#Height: 80#Body Tempurature: 280#Blood Pressure: 280#none
-#Blood Pressure: none
-"
