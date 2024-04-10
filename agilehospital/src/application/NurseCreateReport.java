@@ -1,6 +1,8 @@
 package application;
 
 
+import java.io.IOException;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -18,11 +20,18 @@ import javafx.stage.Stage;
 
 public class NurseCreateReport {
 	private static String user_name = "...";
-	private static String patient_name = "...";
-	private static String healthConcerns = "..";
-	private static String allergies = "...";
+	private static String patient_ID = "...";
+	private static String weight = "";
+	private static String height = "";
+	private static String body_temp = "";
+	private static String blood_pressure = "";
+	private static String healthConcerns = "";
+	private static String allergies = "";
+	private static String immunization = "";
+	
+	private static NurseUtil utility = new NurseUtil();
 
-	public static void display(Stage primaryStage) {
+	public static void display(Stage primaryStage, String patient_ID) {
 		Pane root = new Pane();
         
         //Page title
@@ -37,11 +46,6 @@ public class NurseCreateReport {
         welcome.setLayoutY(100);
         welcome.setFont(Font.font("Helvetica", FontWeight.BOLD, 11));
         
-        // Load the image using the class loader
-        /*
-        Image image = new Image("/image.png");
-        ImageView imageView = new ImageView(image);
-        */
         
         //Message button
         Button Messages = new Button();
@@ -69,61 +73,71 @@ public class NurseCreateReport {
         Dashboard.setLayoutY(50);
         Dashboard.setPrefSize(100,40);
         
-        
-      
+       
         
         //data entry
-        TextField textField_date = createTextField(25, 300);
-        HBox hb_date = createTextBox("Date", textField_date, 150, 150, 85);
-        textField_date.setOnAction(event -> {
-            System.out.println("Selected option: " + textField_date.getText());
+        TextField textField_height = createTextField(25, 300);
+        HBox hb_height = createTextBox("Height", textField_height, 150, 150, 75);
+        textField_height.setOnAction(event -> {
+            height = "Height: " + textField_height.getText();
+        	System.out.println("Selected option: " + textField_height.getText());
         });
         
 
         TextField textField_weight = createTextField(25, 300);
-        HBox hb_weight = createTextBox("Weight", textField_weight, 150, 200, 73);
+        HBox hb_weight = createTextBox("Weight", textField_weight, 150, 190, 73);
         textField_weight.setOnAction(event -> {
+        	weight = "Weight: " + textField_weight.getText();
             System.out.println("Selected option: " + textField_weight.getText());
         });
         
         
         TextField textField_bodyTemp = createTextField(25, 300);
-        HBox hb_bodyTemp = createTextBox("Body Temperature", textField_bodyTemp, 150, 250, 10);
+        HBox hb_bodyTemp = createTextBox("Body Temperature", textField_bodyTemp, 150, 230, 10);
         textField_bodyTemp.setOnAction(event -> {
-            System.out.println("Selected option: " + textField_bodyTemp.getText());
+        	body_temp = "Body Tempurature: " + textField_bodyTemp.getText();
+        	System.out.println("Selected option: " + textField_bodyTemp.getText());
         });
         
         
         TextField textField_bloodPres = createTextField(25, 300);
-        HBox hb_bloodPressure = createTextBox("Blood Pressure", textField_bloodPres, 150, 300, 30);
+        HBox hb_bloodPressure = createTextBox("Blood Pressure", textField_bloodPres, 150, 270, 30);
         textField_bloodPres.setOnAction(event -> {
-            System.out.println("Selected option: " + textField_bloodPres.getText());
+        	blood_pressure = "Blood Pressure: " + textField_bodyTemp.getText();
+        	System.out.println("Selected option: " + textField_bloodPres.getText());
         });
         
         
-        TextArea textArea_allergies = createTextArea(75, 300);
+        TextArea textArea_allergies = createTextArea(65, 300);
         textArea_allergies.setWrapText(true);
-        HBox hb_allergies = createTextArea("Allergies", textArea_allergies, 150, 350, 65);
+        HBox hb_allergies = createTextArea("Allergies", textArea_allergies, 150, 310, 65);
         textArea_allergies.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // This code will be executed whenever the text in the TextArea changes
                 //System.out.println("Text changed: " + newValue);
-            	allergies = newValue;
-                
+            	
+            	allergies =  "Allergies : " + newValue;
             }
         });
         
-        TextArea textArea_healthConcerns = createTextArea(75, 300);
+        TextArea textArea_healthConcerns = createTextArea(65, 300);
         textArea_allergies.setWrapText(true);
-        HBox hb_healthConcerns = createTextArea("Health Concerns", textArea_healthConcerns, 150, 450, 20);
+        HBox hb_healthConcerns = createTextArea("Health Concerns", textArea_healthConcerns, 150, 390, 20);
         textArea_healthConcerns.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // This code will be executed whenever the text in the TextArea changes
                 //System.out.println("Text changed: " + newValue);
-                healthConcerns = newValue;
+                healthConcerns = "Health Concerns: " + newValue;
             }
+        });
+        
+        TextField textField_immunization = createTextField(25, 300);
+        HBox hb_Immunization = createTextBox("Immunization", textField_immunization, 150, 470, 37);
+        textField_immunization.setOnAction(event -> {
+        	immunization = "Immunization : " + textField_immunization.getText();
+        	System.out.println("Selected option: " + textField_immunization.getText());
         });
         
         
@@ -140,7 +154,7 @@ public class NurseCreateReport {
         	boolean requiredFieldsFilled = true;
 
             // Check each text field for content
-            if (textField_date.getText().isEmpty() || textField_weight.getText().isEmpty() ||
+            if (textField_height.getText().isEmpty() || textField_weight.getText().isEmpty() ||
                     textField_bodyTemp.getText().isEmpty() || textField_bloodPres.getText().isEmpty() 
             ) {
             	requiredFieldsFilled = false;
@@ -149,6 +163,20 @@ public class NurseCreateReport {
             if (requiredFieldsFilled) {
                 messageText.setText("Data Saved");
                 messageText.setLayoutX(715);
+                
+                String data = "\"" + weight + "#" + 
+                		height + "#" + 
+                		body_temp + "#" + 
+                		blood_pressure + "#" + 
+                		healthConcerns.replace("\n", "") + 
+                		"#" + allergies.replace("\n", "") + 
+                		"#" + immunization + "\"";
+                try {
+					utility.writePatientReportToFile(patient_ID, data);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 
             } else {
                 messageText.setText("Fill in all required elements before submitting");
@@ -166,7 +194,8 @@ public class NurseCreateReport {
         root.getChildren().add(title);
         root.getChildren().addAll(welcome, messageText);
         root.getChildren().addAll(Messages, Dashboard, Save);
-        root.getChildren().addAll(hb_date, hb_weight, hb_bodyTemp, hb_bloodPressure, hb_allergies, hb_healthConcerns);
+        root.getChildren().addAll(hb_height, hb_weight, hb_bodyTemp, hb_bloodPressure,
+        		hb_allergies, hb_healthConcerns, hb_Immunization);
 
         primaryStage.setScene(new Scene(root, 950, 600));
         primaryStage.setTitle("Patient Physical Report");

@@ -1,0 +1,15 @@
+{
+"username":"pap22",
+"userType":"Patient",
+"firstName":"Avery",
+"lastName":"P",
+"dob":{
+"year":2024,
+"month":3,
+"day":22
+},
+"gender":"Male",
+"password":"Gu@assdfe111",
+"securityQuestion":"What was the name of your first school?",
+"securityAnswer":"red"
+}

@@ -61,7 +61,8 @@ public class Main extends Application {
         
         //create acc instance
         Button createAcc = new Button("Create Account");
-        createAcc.setOnAction(e -> switchToCreateAccount(primaryStage));
+        createAcc.setOnAction(e -> CreateAccountView.display(primaryStage));
+
         
         //forgot pass
         Button forgotButton = new Button("Forgot Password");
@@ -102,7 +103,19 @@ public class Main extends Application {
 		        		success = LogIn.validateLoginInfo(userNameText, passText);
 		        		
 		        		if (success) {
-		                	successMessage.setText("Success, you are logged in");
+		        			char role = userNameText.charAt(0);
+		        			
+		        			if (role == 'n') {
+		        				NurseDashboard.display(primaryStage);//add
+		        				
+		        			} else if (role == 'p') {
+		        				System.out.println("Enter patient view");
+		        				
+		        			} else if (role ==  'd') {
+		        				System.out.println("Enter doctor view");
+		        			}
+		        			
+		        			successMessage.setText("Success, you are logged in");
 		                } else {
 		                	successMessage.setText("Login failed! Retry!!");
 		                }
@@ -123,19 +136,12 @@ public class Main extends Application {
         root.setBottom(bottomButtons);
     	
     	Scene scene = new Scene(root, 500, 400);
-    	
-    	
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
-    private void switchToCreateAccount(Stage stage) {
-    	CreateAccountView cav = new CreateAccountView();
-    	Pane cavPane = cav.init();
-    	Scene createAccScene = new Scene(cavPane, 1000, 700);
-    	stage.setScene(createAccScene);
-    }
+    
 
     public static void main(String[] args) {
         launch(args);

@@ -20,16 +20,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CreateAccountView {
-    protected int userType;
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-    private int gender;
-    private String password;
-    private int securityQuestion;
-    private String securityAnswer;
+    protected static int userType;
+    private static String firstName;
+    private static String lastName;
+    private static LocalDate dateOfBirth;
+    private static int gender;
+    private static String password;
+    private static int securityQuestion;
+    private static String securityAnswer;
 
-    public Pane init() {
+    public CreateAccountView() {
+    	
+    }
+    
+    public static void display(Stage primaryStage) {
 
         Label title = new Label("Create Account");
         title.setLayoutX(450);
@@ -159,10 +163,20 @@ public class CreateAccountView {
 
         Button Back = new Button();
         Back.setText("Back");
-
+       
         Back.setLayoutX(275);
         Back.setLayoutY(575);
         Back.setPrefSize(150,40);
+        Back.setOnAction(event -> 
+        {
+        	Main mainPage = new Main();
+            try {
+				mainPage.start(primaryStage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+        });
 
         Button Submit = new Button();
         Submit.setText("Sign-Up");
@@ -222,7 +236,9 @@ public class CreateAccountView {
         root.getChildren().addAll(hb_FirstName, hb_LastName, hb_Password, hb_Security_Answer);
         root.getChildren().addAll(Submit, Back, messageText);
 
-        return root;
+        primaryStage.setScene(new Scene(root, 950, 600));
+        primaryStage.setTitle("Create Account View");
+        primaryStage.show();
     }
 
     public static TextField createTextField(int X, int Y){
@@ -232,7 +248,7 @@ public class CreateAccountView {
         return textField;
     }
 
-    public HBox createTextBox(String label, TextField textField, int X, int Y, int spacing){
+    public static HBox createTextBox(String label, TextField textField, int X, int Y, int spacing){
         Label label_name = new Label(label);
         HBox hb = new HBox();
         hb.getChildren().addAll(label_name, textField);
