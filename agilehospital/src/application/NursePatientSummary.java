@@ -1,6 +1,8 @@
 package application;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -24,14 +28,16 @@ import javafx.stage.Stage;
 
 public class NursePatientSummary {
 
-	private static String patient_name = "...";
+	private static String patient_ID = "";
 	private static String user_name = "...";
+	
+	private static NurseUtil utility = new NurseUtil();
 
-	public static void display(Stage primaryStage) {
+	public static void display(Stage primaryStage, String patient_ID) throws IOException {
 	        Pane root = new Pane();
 	        
 	        //Page title
-	        Label title = new Label("Patient " + patient_name + " Health Report");
+	        Label title = new Label("Patient " + patient_ID + " Health Report");
 	        title.setLayoutX(100);
 	        title.setLayoutY(50);
 	        title.setFont(Font.font("Helvetica", FontWeight.BOLD, 25));
@@ -42,11 +48,6 @@ public class NursePatientSummary {
 	        welcome.setLayoutY(100);
 	        welcome.setFont(Font.font("Helvetica", FontWeight.BOLD, 11));
 	        
-	        // Load the image using the class loader
-	        /*
-	        Image image = new Image("/image.png");
-	        ImageView imageView = new ImageView(image);
-	        */
 	        
 	        //Message button
 	        Button Messages = createButton("Messages", 675, 50, 100, 40);
@@ -66,13 +67,12 @@ public class NursePatientSummary {
 	        });
 	        
 	        
-	      //message Inbox
+	        //message Inbox
 	        Text visits = new Text("Visits");
 	        visits.setLayoutX(50);
 	        visits.setLayoutY(215);
 	        visits.setFont(Font.font("Helvetica", FontWeight.BOLD, 14));
 	     
-	        
 	        
 	        Text visit_date = createPrivateText();
 	        Text visit_reason = createPrivateText();
@@ -82,31 +82,23 @@ public class NursePatientSummary {
 	        textFlow.setLineSpacing(10); // Set line spacing between text nodes
 	        
 	        
-	        String[] stringsArray = {"Option 1", "Option 2", "Option 3", "Option 4", "Option 5",
-	                "Option 6", "Option 7", "Option 8", "Option 9", "Option 10", "Option 11", "Option 12", 
-	                "Option 13", "Option 14", "Option 15"}; // Your array of strings
+            HashMap<Integer, String> patientData = utility.getPatientReportData(patient_ID);
 	        
+	        Set<Integer> keySet = patientData.keySet();
+	        Integer[] keysArray = keySet.toArray(new Integer[keySet.size()]);
 
-	        ObservableList<String> options = FXCollections.observableArrayList(stringsArray);
-	        ListView<String> listView = new ListView<>(options);
+
+
+	        ObservableList<Integer> options = FXCollections.observableArrayList(keysArray);
+	        ListView<Integer> listView = new ListView<>(options);
 	        
 	        listView.setOnMouseClicked(event -> {
-	            String selectedItem = listView.getSelectionModel().getSelectedItem();
-	            if (selectedItem != null) {
-	                visit_date.setVisible(true);
-	                visit_date.setText("Date: " + selectedItem + "\n");
-	                
-	                visit_reason.setVisible(true);
-	                visit_reason.setText("Reason: " + selectedItem + "\n");
-	                
-	                
-	            	
-	            	/* Perform action when an item is clicked
-	                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	                alert.setTitle("Item Clicked");
-	                alert.setHeaderText("You clicked: " + selectedItem);
-	                alert.showAndWait();
-	                */
+	            Integer selectedItem = listView.getSelectionModel().getSelectedItem();
+	            if (selectedItem != 0) {
+	            	String visit_summary = String.join("\n", patientData.get(selectedItem).split("#"));
+	  
+	            	visit_date.setVisible(true);
+	                visit_date.setText(visit_summary);
 	                
 	                
 	            }
@@ -134,13 +126,14 @@ public class NursePatientSummary {
 	        stackPane.getChildren().addAll(background, textFlow);
 	        stackPane.setLayoutX(400);
 	        stackPane.setLayoutY(200);
-	        
+	      
+
 	        root.getChildren().add(title);
 	        root.getChildren().addAll(welcome, visits);
 	        root.getChildren().addAll(Messages, Dashboard);
 	        root.getChildren().add(scrollPane);
 	        root.getChildren().add(stackPane);
-
+	       
 	        primaryStage.setScene(new Scene(root, 950, 600));
 	        primaryStage.setTitle("Patient Report Summary");
 	        primaryStage.show();
@@ -162,13 +155,30 @@ public class NursePatientSummary {
 		
 		
         // Set padding for each text node
-        text.setWrappingWidth(200); // Set the width for wrapping
-        text.setTextAlignment(TextAlignment.CENTER); // Center the text
-        text.setLineSpacing(10); // Set line spacing
-        text.setTranslateX(10); // Left padding
-        text.setTranslateY(10); // Top padding
+        text.setWrappingWidth(200); 
+        text.setTextAlignment(TextAlignment.CENTER); 
+        text.setLineSpacing(10); 
+        text.setTranslateX(10); 
+        text.setTranslateY(10); 
 
 		
 		return text;
 	}
+	
+	private static HBox createTextBox(String label, TextField textField, int X, int Y, int spacing){
+        Label label_name = new Label(label);
+        HBox hb = new HBox();
+        hb.getChildren().addAll(label_name, textField);
+        hb.setSpacing(spacing);
+        hb.setLayoutX(X);
+        hb.setLayoutY(Y);
+        return hb;     
+	}
+	
+	private static TextField createTextField(int height, int width){
+        TextField textField = new TextField ();
+        textField.setPrefHeight(height);
+        textField.setPrefWidth(width);
+        return textField;
+    }
 }

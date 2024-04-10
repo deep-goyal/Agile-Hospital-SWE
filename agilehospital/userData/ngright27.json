@@ -1,0 +1,15 @@
+{
+"username":"ngright27",
+"userType":"Nurse",
+"firstName":"Georgia",
+"lastName":"Right",
+"dob":{
+"year":2024,
+"month":3,
+"day":27
+},
+"gender":"Female",
+"password":"Sunshine242@",
+"securityQuestion":"What was the name of your first pet?",
+"securityAnswer":"blue"
+}
