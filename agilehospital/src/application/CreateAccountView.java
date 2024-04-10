@@ -3,21 +3,14 @@ package application;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javafx.application.Application;
+import application.serializedBackend.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class CreateAccountView {
     protected int userType;
@@ -178,7 +171,7 @@ public class CreateAccountView {
 
         Submit.setOnAction((ActionEvent event) -> {
             System.out.println("Button clicked!");
-            SignUp signupInterface = new SignUp();
+            Patient.SignUp signupInterface = new Patient.SignUp();
 
             if (signupInterface.validateUserInput(userType, firstName, dateOfBirth, gender,
                     password, securityQuestion, securityAnswer)) {

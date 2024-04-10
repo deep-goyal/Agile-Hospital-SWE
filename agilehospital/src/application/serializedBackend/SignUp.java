@@ -1,4 +1,4 @@
-package application;
+package application.serializedBackend;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -54,7 +54,7 @@ public class SignUp {
         return (userTypeIsValid && firstNameIsValid && dateOfBirthIsValid && genderIsValid && passwordIsValid && securityQuestionIsValid && securityAnswerIsValid);
     }
 
-    
+
     // Internal methods
     private static String generateUsername(int userType, String firstName, String lastName, LocalDate dateOfBirth) throws IOException {
         String baseUsername = "";
