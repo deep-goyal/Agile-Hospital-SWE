@@ -7,18 +7,18 @@ import java.nio.file.Paths;
 
 public class PatientFunctions {
 		//directory paths
-		private static final String DIRECTORY = System.getProperty("user.dir") + File.separator + "PatientInfo";
+		private static final String DIRECTORY = System.getProperty("user.dir") + File.separator + "PatientVitals";
 		
 		private static final String PRESCRIPTIONDIRECTORY = System.getProperty("user.dir") + File.separator + "PatientPrescriptions";
 		
 		 public static boolean checkPatientInfoExists(String patientID) {
-		        String filePath = DIRECTORY + File.separator + patientID + "_PatientInfo.txt";
+		        String filePath = DIRECTORY + File.separator + patientID + "_PatientVitals.txt";
 		        return new File(filePath).exists();
 		 }
 		
 		
-        public static String[] getPatientInfoData(String patientID) throws IOException {
-            String infoPath = DIRECTORY + File.separator + patientID + "_PatientInfo.txt";
+        public static String[] getPatientVitals(String patientID) throws IOException {
+            String infoPath = DIRECTORY + File.separator + patientID + "_PatientVitals.txt";
             if (!checkPatientInfoExists(patientID)) {
                 throw new IOException("Info file for patient ID " + patientID + " does not exist.");
             }
