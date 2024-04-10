@@ -202,4 +202,44 @@ public class SignUp {
 
         return true;
     }
+
+    public static void createContactInfoFile(String filePath) throws IOException {
+        String DIRECTORY = System.getProperty("user.dir") + File.separator + "userData" + File.separator + "contactInfo";
+        new File(DIRECTORY).mkdirs();
+        if (!Files.exists(Path.of(filePath))) {
+            String init = """
+                    {
+                    "PhoneNumber":""
+                    }
+                    """;
+            FileWriter initFile = new FileWriter(filePath);
+            initFile.write(init);
+            initFile.close();
+        }
+    }
+
+    public static boolean setPhoneNumber(String phoneNumber, String userID) throws IOException {
+        String filePath = System.getProperty("user.dir") + File.separator + "userData" + File.separator + "contactInfo" + File.separator + userID + "_contactInfo.json";
+        createContactInfoFile(filePath);
+        String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
+        String targetKey = "\"PhoneNumber\":\"";
+
+        int startIndex = fileContent.indexOf(targetKey) + targetKey.length();
+        int endIndex = fileContent.indexOf("\"", startIndex);
+
+        if ((startIndex == targetKey.length() - 1) || (endIndex == -1))
+            return false;
+
+        String updatedContent = fileContent.substring(0, startIndex) + phoneNumber + fileContent.substring(endIndex);
+
+        try {
+            FileWriter writer = new FileWriter(filePath);
+            writer.write(updatedContent);
+            writer.close();
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
+    }
 }
