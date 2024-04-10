@@ -24,6 +24,8 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class Main extends Application {
+
+    public static Stage primaryStage;
 	
 	String userNameText = "";
 	String passText = "";
@@ -31,6 +33,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Main.primaryStage = primaryStage;
+
     	//define the root
     	BorderPane root = new BorderPane();
     	

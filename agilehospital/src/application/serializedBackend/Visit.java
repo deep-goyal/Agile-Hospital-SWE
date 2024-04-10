@@ -3,11 +3,11 @@ package application.serializedBackend;
 import java.io.Serializable;
 
 public class Visit implements Serializable {
-    private String date;
-    private Vitals vitals;
-    private Prescription prescription;
-    private String allergies;
-    private String concerns;
+    public String date;
+    public Vitals vitals;
+    public Prescription prescription;
+    public String allergies;
+    public String concerns;
 
     public Visit(String date, Vitals vitals, Prescription prescription, String allergies, String concerns) {
         this.date = date;

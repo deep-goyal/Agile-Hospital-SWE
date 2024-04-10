@@ -15,7 +15,6 @@ public class DoctorDashHandler {
     //view reports button action
     public void examinePatientFunc() {
         //redirect to PatientReports.fxml
-        System.out.print("View Reports");
     }
 
     //change info button action
