@@ -16,11 +16,11 @@
          <children>
             <Label text="Patient ID:" />
             <TextField fx:id="patientID" editable="false" />
-            <Label fx:id="patientName_label" prefHeight="31.0" prefWidth="349.0" text="Date Prescribed:" />
+            <Label fx:id="patientName_label" prefHeight="31.0" prefWidth="349.0" text="Date:" />
             <TextField fx:id="date" promptText="mm-dd-yyyy" />
             <Label fx:id="medication_label" text="Medication:" />
             <TextField fx:id="medication" />
-            <Label fx:id="notes_label" text="Notes:" />
+            <Label fx:id="notes_label" text="Visit Notes:" />
             <TextArea fx:id="notes" prefHeight="69.0" prefWidth="481.0" wrapText="true" />
          </children>
          <padding>

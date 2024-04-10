@@ -11,6 +11,9 @@ public class SignUp {
 
     // Backend endpoint that creates a user file
     public static String registerUser(int userType, String firstName, String lastName, LocalDate dateOfBirth, int gender, String password, int securityQuestion, String securityAnswer) throws IOException {
+        String DIRECTORY = System.getProperty("user.dir") + File.separator + "userData";
+        new File(DIRECTORY).mkdir();
+
         String username = generateUsername(userType, firstName, lastName, dateOfBirth);
 
         if (createUserFile(username, userType, firstName, lastName, dateOfBirth, gender, password, securityQuestion, securityAnswer)) {

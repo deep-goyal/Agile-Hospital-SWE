@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class LogIn {
    
     public static boolean validateLoginInfo(String username, String password) {
+
         String userFilePath = System.getProperty("user.dir") + File.separator + "userData" + File.separator + username + ".json";
         boolean userFileExists = Files.exists(Paths.get(userFilePath));
         String userPasswordOnFile = "";
