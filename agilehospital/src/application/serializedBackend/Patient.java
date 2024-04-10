@@ -16,6 +16,4 @@ public class Patient implements Serializable {
     public Patient(String patientID) {
         this.patientID = patientID;
     }
-
-
 }

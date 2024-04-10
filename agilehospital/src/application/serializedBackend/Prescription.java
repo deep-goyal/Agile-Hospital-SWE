@@ -4,15 +4,17 @@ import java.io.Serializable;
 
 public class Prescription implements Serializable {
     private String date;
-    private String data;
+    private String meds;
+    private String notes;
 
-    public Prescription(String date, String data) {
+    public Prescription(String date, String meds, String notes) {
         this.date = date;
-        this.data = data;
+        this.meds = meds;
+        this.notes = notes;
     }
 
     public String[] getPrescription() {
-        String[] dataToReturn = {date, data};
+        String[] dataToReturn = {date, meds, notes};
         return dataToReturn;
     }
 }
