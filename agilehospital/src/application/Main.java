@@ -4,8 +4,10 @@ import application.serializedBackend.LogIn;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -52,7 +54,7 @@ public class Main extends Application {
         passField.setPromptText("Required");
         
         //login button
-        HBox loginBox = new HBox();
+        VBox loginBox = new VBox();
         Button loginButton = new Button("Login");
         
         //success message
@@ -65,11 +67,7 @@ public class Main extends Application {
         createAcc.setOnAction(e -> CreateAccountView.display(primaryStage));
 
         
-        //forgot pass
-        Button forgotButton = new Button("Forgot Password");
-        
-        HBox bottomButtons = new HBox();
-        
+
         //alignment
         userName.setAlignment(Pos.CENTER);
         userName.setSpacing(30);
@@ -79,18 +77,15 @@ public class Main extends Application {
         vbox.setPadding(new Insets(50));
         vbox.setSpacing(15);
         loginBox.setAlignment(Pos.CENTER);
-        bottomButtons.setSpacing(30);
-        bottomButtons.setAlignment(Pos.CENTER);
+        loginBox.setSpacing(15);
         BorderPane.setAlignment(title, Pos.CENTER);
         BorderPane.setAlignment(vbox, Pos.CENTER);
-        BorderPane.setAlignment(bottomButtons, Pos.TOP_CENTER);
-        
+
         userName.getChildren().addAll(userLabel, userNameField);
         passBox.getChildren().addAll(passLabel, passField);
-        loginBox.getChildren().add(loginButton);
+        loginBox.getChildren().addAll(loginButton, createAcc);
         vbox.getChildren().addAll(userName, passBox, loginBox);
-        bottomButtons.getChildren().addAll(forgotButton, createAcc);
-        
+
       //capture texts after button pressed (EVENT HANDLER)
         EventHandler<ActionEvent> loginHandler = new EventHandler<ActionEvent>() {
         	@Override
@@ -111,13 +106,13 @@ public class Main extends Application {
                             try {
                                 switch (userNameText.charAt(0)) {
                                     case 'p' :
-                                        switchToPatientView(userNameText);
+                                        switchToPatientView(primaryStage, userNameText);
                                         break;
                                     case 'n' :
-                                        switchToNurseView(userNameText);
+                                        switchToNurseView(primaryStage, userNameText);
                                         break;
                                     case 'd':
-                                        switchToDoctorView(userNameText);
+                                        switchToDoctorView(primaryStage, userNameText);
                                         break;
                                     default:
                                         System.out.println("Error. Login Redirection failed.");
@@ -155,9 +150,7 @@ public class Main extends Application {
         root.setTop(title);
         //add button to the scene
         root.setCenter(vbox);
-        //set bottom to the buttons
-        root.setBottom(bottomButtons);
-    	
+
     	Scene scene = new Scene(root, 500, 400);
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
@@ -173,30 +166,31 @@ public class Main extends Application {
     }
 
     //----------------TO-DO--------------------------
-    private void switchToDoctorView(String userName) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorView.fxml"));
-//        Parent root = loader.load();
-//        DoctorController controller = loader.getController();
-//        controller.setUserName(userName);
-//        primaryStage.setScene(new Scene(root));
+    private void switchToDoctorView(Stage primaryStage, String userName) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/DoctorDash.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     //----------------TO-DO--------------------------
-    private void switchToNurseView(String userName) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("NurseView.fxml"));
-//        Parent root = loader.load();
-//        NurseController controller = loader.getController();
-//        controller.setUserName(userName);
-//        primaryStage.setScene(new Scene(root));
+    private void switchToNurseView(Stage primaryStage, String userName) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/NurseDash.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     //----------------TO-DO--------------------------
-    private void switchToPatientView(String userName) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientView.fxml"));
-//        Parent root = loader.load();
-//        PatientController controller = loader.getController();
-//        controller.setUserName(userName);
-//        primaryStage.setScene(new Scene(root));
+    private void switchToPatientView(Stage primaryStage, String userName) throws IOException {
+        //switch to patientDash.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/PatientDash.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

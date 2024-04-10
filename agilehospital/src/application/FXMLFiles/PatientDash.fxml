@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLHandlers.PatientDashHandler">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,9 +16,9 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="View Reports" />
-            <Button mnemonicParsing="false" text="Change Contact Info" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="View Inbox" />
+            <Button fx:id="viewReports" mnemonicParsing="false" onAction="#viewReportsFunc" prefHeight="25.0" prefWidth="131.0" text="View Reports" />
+            <Button fx:id="changeInfo" mnemonicParsing="false" onAction="#changeInfoFunc" text="Change Contact Info" />
+            <Button fx:id="viewInbox" mnemonicParsing="false" onAction="#viewInboxFunc" prefHeight="25.0" prefWidth="132.0" text="View Inbox" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />
