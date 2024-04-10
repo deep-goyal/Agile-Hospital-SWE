@@ -157,6 +157,19 @@ public class SignUp {
         String fileName = "userData" + File.separator + username + ".json";
         boolean fileCreated = false;
 
+
+        //create userData directory if it doesn't exist
+        File directory = new File(DIRECTORY);
+        if (!directory.exists()) {
+            boolean created = directory.mkdir();
+
+            if (created) {
+                System.out.println("Directory created successfully!");
+            } else {
+                System.out.println("Failed to create directory.");
+            }
+        }
+
         // creating the file
         try {
             File makeFile = new File(fileName);

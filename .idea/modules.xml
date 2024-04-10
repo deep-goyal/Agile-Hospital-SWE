@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HospitalUI.iml" filepath="$PROJECT_DIR$/HospitalUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/agilehospitalswe.iml" filepath="$PROJECT_DIR$/.idea/agilehospitalswe.iml" />
     </modules>
   </component>
 </project>
