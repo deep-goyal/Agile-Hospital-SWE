@@ -24,17 +24,14 @@ public class CreateAccountView {
     private static int securityQuestion;
     private static String securityAnswer;
 
-<<<<<<< HEAD
     private SignUp signupInterface = new SignUp();
 
     public Pane init() {
-=======
     public CreateAccountView() {
     	
     }
     
     public static void display(Stage primaryStage) {
->>>>>>> origin/main
 
         Label title = new Label("Create Account");
         title.setLayoutX(450);
@@ -168,9 +165,7 @@ public class CreateAccountView {
        
         Back.setLayoutX(275);
         Back.setLayoutY(575);
-<<<<<<< HEAD
         Back.setPrefSize(150, 40);
-=======
         Back.setPrefSize(150,40);
         Back.setOnAction(event -> 
         {
@@ -182,8 +177,6 @@ public class CreateAccountView {
 				e.printStackTrace();
 			}	
         });
->>>>>>> origin/main
-
         Button Submit = new Button();
         Submit.setText("Sign-Up");
 
@@ -252,11 +245,9 @@ public class CreateAccountView {
         return textField;
     }
 
-<<<<<<< HEAD
     public HBox createTextBox(String label, TextField textField, int X, int Y, int spacing) {
-=======
     public static HBox createTextBox(String label, TextField textField, int X, int Y, int spacing){
->>>>>>> origin/main
+
         Label label_name = new Label(label);
         HBox hb = new HBox();
         hb.getChildren().addAll(label_name, textField);
@@ -302,5 +293,4 @@ public class CreateAccountView {
         hb.setLayoutY(Y);
         return hb;
     }
-
 }

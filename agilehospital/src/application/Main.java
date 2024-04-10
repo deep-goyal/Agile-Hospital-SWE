@@ -104,7 +104,6 @@ public class Main extends Application {
 		        		success = LogIn.validateLoginInfo(userNameText, passText);
 		        		
 		        		if (success) {
-<<<<<<< HEAD
 		                	//successMessage.setText("Success, you are logged in");
 
                             //----------------TO-DO--------------------------
@@ -127,7 +126,6 @@ public class Main extends Application {
                                 ex.printStackTrace();
                             }
 
-=======
 		        			char role = userNameText.charAt(0);
 		        			
 		        			if (role == 'n') {
@@ -141,7 +139,6 @@ public class Main extends Application {
 		        			}
 		        			
 		        			successMessage.setText("Success, you are logged in");
->>>>>>> origin/main
 		                } else {
 		                	successMessage.setText("Login failed! Retry!!");
 		                }
@@ -162,15 +159,10 @@ public class Main extends Application {
         root.setBottom(bottomButtons);
     	
     	Scene scene = new Scene(root, 500, 400);
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-<<<<<<< HEAD
 
     //completed
     private void switchToCreateAccount(Stage stage) {
@@ -179,10 +171,6 @@ public class Main extends Application {
     	Scene createAccScene = new Scene(cavPane, 1000, 700);
     	stage.setScene(createAccScene);
     }
-=======
-    
-    
->>>>>>> origin/main
 
     //----------------TO-DO--------------------------
     private void switchToDoctorView(String userName) throws IOException {
