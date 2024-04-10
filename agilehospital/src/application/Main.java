@@ -62,7 +62,8 @@ public class Main extends Application {
         
         //create acc instance
         Button createAcc = new Button("Create Account");
-        createAcc.setOnAction(e -> switchToCreateAccount(primaryStage));
+        createAcc.setOnAction(e -> CreateAccountView.display(primaryStage));
+
         
         //forgot pass
         Button forgotButton = new Button("Forgot Password");
@@ -103,6 +104,7 @@ public class Main extends Application {
 		        		success = LogIn.validateLoginInfo(userNameText, passText);
 		        		
 		        		if (success) {
+<<<<<<< HEAD
 		                	//successMessage.setText("Success, you are logged in");
 
                             //----------------TO-DO--------------------------
@@ -125,6 +127,21 @@ public class Main extends Application {
                                 ex.printStackTrace();
                             }
 
+=======
+		        			char role = userNameText.charAt(0);
+		        			
+		        			if (role == 'n') {
+		        				NurseDashboard.display(primaryStage);//add
+		        				
+		        			} else if (role == 'p') {
+		        				System.out.println("Enter patient view");
+		        				
+		        			} else if (role ==  'd') {
+		        				System.out.println("Enter doctor view");
+		        			}
+		        			
+		        			successMessage.setText("Success, you are logged in");
+>>>>>>> origin/main
 		                } else {
 		                	successMessage.setText("Login failed! Retry!!");
 		                }
@@ -145,11 +162,15 @@ public class Main extends Application {
         root.setBottom(bottomButtons);
     	
     	Scene scene = new Scene(root, 500, 400);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+<<<<<<< HEAD
 
     //completed
     private void switchToCreateAccount(Stage stage) {
@@ -158,6 +179,10 @@ public class Main extends Application {
     	Scene createAccScene = new Scene(cavPane, 1000, 700);
     	stage.setScene(createAccScene);
     }
+=======
+    
+    
+>>>>>>> origin/main
 
     //----------------TO-DO--------------------------
     private void switchToDoctorView(String userName) throws IOException {
