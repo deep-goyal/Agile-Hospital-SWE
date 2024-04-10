@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLHandlers.DoctorDashHandler">
     <top>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Dashboard" BorderPane.alignment="TOP_LEFT">
             <BorderPane.margin>
@@ -26,9 +26,9 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Text>
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Examine Patient" />
-                <Button mnemonicParsing="false" text="View Medical History" />
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="View Inbox" />
+                <Button fx:id="examinePatient" mnemonicParsing="false" onAction="#examinePatientFunc" prefHeight="25.0" prefWidth="131.0" text="Examine Patient" />
+                <Button fx:id="viewMedHistory" mnemonicParsing="false" onAction="#viewMedHistoryFunc" text="View Medical History" />
+                <Button fx:id="viewInbox" mnemonicParsing="false" onAction="#viewInboxFunc" prefHeight="25.0" prefWidth="131.0" text="View Inbox" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="30.0" />
