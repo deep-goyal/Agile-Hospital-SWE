@@ -63,19 +63,15 @@ public class doctorPrescriptionView {
     @FXML
     void back_clicked(ActionEvent event) {
         try {
-            // Load the previous view (FXML file)
-            Parent previousView = FXMLLoader.load(getClass().getResource("docView.fxml")); // Correct the path as necessary
+            Parent previousView = FXMLLoader.load(getClass().getResource("docView.fxml")); 
             Scene scene = new Scene(previousView);
 
-            // Get the current stage (window) using the event source
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            // Set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Optionally, you can show an error message to the user here
         }
     }
 
