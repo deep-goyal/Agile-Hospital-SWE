@@ -1,8 +1,11 @@
 package application.FXMLHandlers;
+import application.serializedBackend.MessagesBackend;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,15 +15,62 @@ import java.util.stream.Collectors;
 public class PatMessages {
 
     @FXML
-    private TableView<String> message_table; // TableView holding message thread names
+    private TableView<String> message_table;
 
     @FXML
-    private TextArea allmessages_textarea; // TextArea for displaying a message thread's content
+    private TextArea allmessages_textarea;
+
+    @FXML
+    private TextField newmessage_user_field;
+
+    @FXML
+    private TextField inputmessage_TF; // Correctly declared now
+
+    @FXML
+    private Button newmessage_button;
+
+    @FXML
+    private Button send_button;
+
+
+    // Placeholder for the global username variable
+    private String globalUsername = "placeholder_for_global_username";
 
     @FXML
     public void initialize() {
         loadMessageFiles();
         setupMessageSelectionListener();
+        setupNewMessageButton();
+        setupSendButton();
+    }
+
+    private void setupSendButton() {
+        send_button.setOnAction(event -> sendMessage());
+    }
+
+    private void sendMessage() {
+        String message = inputmessage_TF.getText().trim();
+        if (message.isEmpty()) {
+            System.err.println("Message is empty.");
+            return;
+        }
+
+        String selectedThread = message_table.getSelectionModel().getSelectedItem();
+        if (selectedThread == null) {
+            System.err.println("No message thread selected.");
+            return;
+        }
+
+        // Assuming the thread name is the file name. Adjust if your file naming scheme is different.
+        boolean result = MessagesBackend.sendMessage(globalUsername, "receiver_username_placeholder", message, globalUsername);
+
+        if (result) {
+            System.out.println("Message sent successfully.");
+            displayMessageContent(selectedThread); // Refresh the TextArea display
+            inputmessage_TF.clear(); // Clear the input field
+        } else {
+            System.err.println("Failed to send message.");
+        }
     }
 
     private void loadMessageFiles() {
@@ -48,7 +98,6 @@ public class PatMessages {
     }
 
     private void setupMessageSelectionListener() {
-        // Add a listener to detect changes in selection within the TableView
         message_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 displayMessageContent(newSelection);
@@ -60,10 +109,37 @@ public class PatMessages {
         try {
             String messageDirPath = "userData" + File.separator + "messages" + File.separator + fileName;
             String content = new String(Files.readAllBytes(Paths.get(messageDirPath)));
-            allmessages_textarea.setText(content); // Update TextArea with file content
+            allmessages_textarea.setText(content);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Failed to load message content: " + e.getMessage());
+        }
+    }
+
+    private void setupNewMessageButton() {
+        // Assuming newmessage_button is the fx:id of the "send new message" button
+        newmessage_button.setOnAction(event -> createNewMessage());
+    }
+
+    private void createNewMessage() {
+        String message = newmessage_user_field.getText();
+        if (message.isEmpty()) {
+            System.err.println("No message entered.");
+            return;
+        }
+
+        // Call your backend function here to create a new message file
+        // Replace "sendMessage" with the actual method name and adjust parameters as necessary
+        // The "globalUsername" variable is used as a placeholder for the actual sender's username
+        boolean result = MessagesBackend.sendMessage(globalUsername, "receiver_username_placeholder", message, globalUsername);
+
+        if (result) {
+            System.out.println("Message successfully saved.");
+            // Optionally clear the text field and refresh the message list
+            newmessage_user_field.clear();
+            loadMessageFiles();
+        } else {
+            System.err.println("Failed to save message.");
         }
     }
 }
