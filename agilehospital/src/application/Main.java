@@ -1,5 +1,6 @@
 package application;
 	
+import application.serializedBackend.LogIn;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -103,6 +104,30 @@ public class Main extends Application {
 		        		success = LogIn.validateLoginInfo(userNameText, passText);
 		        		
 		        		if (success) {
+<<<<<<< HEAD
+		                	//successMessage.setText("Success, you are logged in");
+
+                            //----------------TO-DO--------------------------
+                            //get the type of user and redirect them to their respective view
+                            try {
+                                switch (userNameText.charAt(0)) {
+                                    case 'p' :
+                                        switchToPatientView(userNameText);
+                                        break;
+                                    case 'n' :
+                                        switchToNurseView(userNameText);
+                                        break;
+                                    case 'd':
+                                        switchToDoctorView(userNameText);
+                                        break;
+                                    default:
+                                        System.out.println("Error. Login Redirection failed.");
+                                }
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+
+=======
 		        			char role = userNameText.charAt(0);
 		        			
 		        			if (role == 'n') {
@@ -116,6 +141,7 @@ public class Main extends Application {
 		        			}
 		        			
 		        			successMessage.setText("Success, you are logged in");
+>>>>>>> origin/main
 		                } else {
 		                	successMessage.setText("Login failed! Retry!!");
 		                }
@@ -136,12 +162,54 @@ public class Main extends Application {
         root.setBottom(bottomButtons);
     	
     	Scene scene = new Scene(root, 500, 400);
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+<<<<<<< HEAD
+
+    //completed
+    private void switchToCreateAccount(Stage stage) {
+    	CreateAccountView cav = new CreateAccountView();
+    	Pane cavPane = cav.init();
+    	Scene createAccScene = new Scene(cavPane, 1000, 700);
+    	stage.setScene(createAccScene);
+    }
+=======
     
     
+>>>>>>> origin/main
+
+    //----------------TO-DO--------------------------
+    private void switchToDoctorView(String userName) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorView.fxml"));
+//        Parent root = loader.load();
+//        DoctorController controller = loader.getController();
+//        controller.setUserName(userName);
+//        primaryStage.setScene(new Scene(root));
+    }
+
+    //----------------TO-DO--------------------------
+    private void switchToNurseView(String userName) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("NurseView.fxml"));
+//        Parent root = loader.load();
+//        NurseController controller = loader.getController();
+//        controller.setUserName(userName);
+//        primaryStage.setScene(new Scene(root));
+    }
+
+    //----------------TO-DO--------------------------
+    private void switchToPatientView(String userName) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientView.fxml"));
+//        Parent root = loader.load();
+//        PatientController controller = loader.getController();
+//        controller.setUserName(userName);
+//        primaryStage.setScene(new Scene(root));
+    }
 
     public static void main(String[] args) {
         launch(args);

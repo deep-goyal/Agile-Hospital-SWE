@@ -1,4 +1,4 @@
-package application;
+package application.serializedBackend;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,6 +12,9 @@ public class SignUp {
 
     // Backend endpoint that creates a user file
     public static String registerUser(int userType, String firstName, String lastName, LocalDate dateOfBirth, int gender, String password, int securityQuestion, String securityAnswer) throws IOException {
+        String DIRECTORY = System.getProperty("user.dir") + File.separator + "userData";
+        new File(DIRECTORY).mkdir();
+
         String username = generateUsername(userType, firstName, lastName, dateOfBirth);
 
         if (createUserFile(username, userType, firstName, lastName, dateOfBirth, gender, password, securityQuestion, securityAnswer)) {
@@ -55,7 +58,7 @@ public class SignUp {
         return (userTypeIsValid && firstNameIsValid && dateOfBirthIsValid && genderIsValid && passwordIsValid && securityQuestionIsValid && securityAnswerIsValid);
     }
 
-    
+
     // Internal methods
     private static String generateUsername(int userType, String firstName, String lastName, LocalDate dateOfBirth) throws IOException {
         String baseUsername = "";

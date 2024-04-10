@@ -3,21 +3,16 @@ package application;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javafx.application.Application;
+import application.serializedBackend.SignUp;
+
+import application.serializedBackend.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class CreateAccountView {
     protected static int userType;
@@ -29,11 +24,17 @@ public class CreateAccountView {
     private static int securityQuestion;
     private static String securityAnswer;
 
+<<<<<<< HEAD
+    private SignUp signupInterface = new SignUp();
+
+    public Pane init() {
+=======
     public CreateAccountView() {
     	
     }
     
     public static void display(Stage primaryStage) {
+>>>>>>> origin/main
 
         Label title = new Label("Create Account");
         title.setLayoutX(450);
@@ -65,10 +66,10 @@ public class CreateAccountView {
         });
 
         TextField textField_firstName = createTextField(300, 300);
-        HBox hb_FirstName = createTextBox("First Name",textField_firstName, 275, 200, 70);
+        HBox hb_FirstName = createTextBox("First Name", textField_firstName, 275, 200, 70);
 
         TextField textField_lastName = createTextField(300, 300);
-        HBox hb_LastName = createTextBox("Last Name", textField_lastName,275, 250, 70);
+        HBox hb_LastName = createTextBox("Last Name", textField_lastName, 275, 250, 70);
 
         ObservableList<LocalDate> dateOptions = FXCollections.observableArrayList();
 
@@ -108,7 +109,7 @@ public class CreateAccountView {
         });
 
         TextField textField_pass = createTextField(300, 300);
-        HBox hb_Password = createTextBox("Password", textField_pass,275, 400, 70);
+        HBox hb_Password = createTextBox("Password", textField_pass, 275, 400, 70);
 
         String sq[] = {
                 "What was the name of your first pet?",
@@ -119,53 +120,57 @@ public class CreateAccountView {
                 "What is your favorite sport?"
         };
 
-		ChoiceBox cb_security_question = new ChoiceBox(FXCollections.observableArrayList(sq));
+        ChoiceBox cb_security_question = new ChoiceBox(FXCollections.observableArrayList(sq));
 
-        cb_security_question.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected option: " + newValue);
+        cb_security_question.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    System.out.println("Selected option: " + newValue);
 
-            if (newValue == "What was the name of your first pet?"){
-                securityQuestion = 1;
-            } else if (newValue == "What was the name of your first school?"){
-                securityQuestion = 2;
-            } else if (newValue == "What year did you enter college?"){
-                securityQuestion = 3;
-            } else if (newValue == "What is the name of the manufacturer of your first car?"){
-                securityQuestion = 4;
-            } else if (newValue == "What is your favorite sport?"){
-                securityQuestion = 5;
-            }
-        });
+                    if (newValue == "What was the name of your first pet?") {
+                        securityQuestion = 1;
+                    } else if (newValue == "What was the name of your first school?") {
+                        securityQuestion = 2;
+                    } else if (newValue == "What year did you enter college?") {
+                        securityQuestion = 3;
+                    } else if (newValue == "What is the name of the manufacturer of your first car?") {
+                        securityQuestion = 4;
+                    } else if (newValue == "What is your favorite sport?") {
+                        securityQuestion = 5;
+                    }
+                });
 
-        cb_security_question.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected option: " + newValue);
+        cb_security_question.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    System.out.println("Selected option: " + newValue);
 
-            if (newValue == "What was the name of your first pet?"){
-                securityQuestion = 1;
-            } else if (newValue == "What was the name of your first school?"){
-                securityQuestion = 2;
-            } else if (newValue == "What year did you enter college?"){
-                securityQuestion = 3;
-            } else if (newValue == "What is the name of the manufacturer of your first car?"){
-                securityQuestion = 4;
-            } else if (newValue == "What is your favorite sport?"){
-                securityQuestion = 5;
-            }
-        });
+                    if (newValue == "What was the name of your first pet?") {
+                        securityQuestion = 1;
+                    } else if (newValue == "What was the name of your first school?") {
+                        securityQuestion = 2;
+                    } else if (newValue == "What year did you enter college?") {
+                        securityQuestion = 3;
+                    } else if (newValue == "What is the name of the manufacturer of your first car?") {
+                        securityQuestion = 4;
+                    } else if (newValue == "What is your favorite sport?") {
+                        securityQuestion = 5;
+                    }
+                });
 
         HBox hb_Security_Question = createHBox(275, 450, 30);
         Label label_sq = new Label("Security Question");
         hb_Security_Question.getChildren().addAll(label_sq, cb_security_question);
 
         TextField textField_SA = createTextField(300, 300);
-        HBox hb_Security_Answer = createTextBox("Security Answer",textField_SA, 275, 500, 35);
-
+        HBox hb_Security_Answer = createTextBox("Security Answer", textField_SA, 275, 500, 35);
 
         Button Back = new Button();
         Back.setText("Back");
        
         Back.setLayoutX(275);
         Back.setLayoutY(575);
+<<<<<<< HEAD
+        Back.setPrefSize(150, 40);
+=======
         Back.setPrefSize(150,40);
         Back.setOnAction(event -> 
         {
@@ -177,15 +182,14 @@ public class CreateAccountView {
 				e.printStackTrace();
 			}	
         });
+>>>>>>> origin/main
 
         Button Submit = new Button();
         Submit.setText("Sign-Up");
 
         Submit.setLayoutX(725);
         Submit.setLayoutY(575);
-        Submit.setPrefSize(150,40);
-
-
+        Submit.setPrefSize(150, 40);
 
         Text messageText = new Text();
         messageText.setLayoutX(275);
@@ -193,14 +197,14 @@ public class CreateAccountView {
 
         Submit.setOnAction((ActionEvent event) -> {
             System.out.println("Button clicked!");
-            SignUp signupInterface = new SignUp();
 
             if (signupInterface.validateUserInput(userType, firstName, dateOfBirth, gender,
-                    password, securityQuestion, securityAnswer)){
+                    password, securityQuestion, securityAnswer)) {
                 System.out.println("This works");
 
                 try {
-                    String new_username = signupInterface.registerUser(userType, firstName, lastName, dateOfBirth, gender,
+                    String new_username = signupInterface.registerUser(userType, firstName, lastName, dateOfBirth,
+                            gender,
                             password, securityQuestion, securityAnswer);
 
                     if (new_username == "-1") {
@@ -213,7 +217,7 @@ public class CreateAccountView {
                     e.printStackTrace();
                 }
             } else {
-                //clear all textbox, buttons, and choicebox
+                // clear all textbox, buttons, and choicebox
                 User_group.selectToggle(null);
                 Gender_group.selectToggle(null);
                 cb_security_question.setValue(null);
@@ -222,12 +226,12 @@ public class CreateAccountView {
                 textField_lastName.clear();
                 textField_pass.clear();
                 textField_SA.clear();
-                //write error message to screen
+                // write error message to screen
                 messageText.setText("Input was invalid... Try Again");
             }
         });
 
-//
+        //
 
         Pane root = new Pane();
         root.getChildren().add(title);
@@ -241,14 +245,18 @@ public class CreateAccountView {
         primaryStage.show();
     }
 
-    public static TextField createTextField(int X, int Y){
-        TextField textField = new TextField ();
+    public static TextField createTextField(int X, int Y) {
+        TextField textField = new TextField();
         textField.setPrefWidth(X);
         textField.setMaxWidth(Y);
         return textField;
     }
 
+<<<<<<< HEAD
+    public HBox createTextBox(String label, TextField textField, int X, int Y, int spacing) {
+=======
     public static HBox createTextBox(String label, TextField textField, int X, int Y, int spacing){
+>>>>>>> origin/main
         Label label_name = new Label(label);
         HBox hb = new HBox();
         hb.getChildren().addAll(label_name, textField);
@@ -256,22 +264,22 @@ public class CreateAccountView {
         hb.setLayoutX(X);
         hb.setLayoutY(Y);
 
-        if (label == "First Name"){
+        if (label == "First Name") {
             textField.setOnAction(event -> {
                 System.out.println("Selected option: " + textField.getText());
                 firstName = textField.getText();
             });
-        } else if (label == "Last Name"){
+        } else if (label == "Last Name") {
             textField.setOnAction(event -> {
                 System.out.println("Selected option: " + textField.getText());
                 lastName = textField.getText();
             });
-        } else if (label == "Password"){
+        } else if (label == "Password") {
             textField.setOnAction(event -> {
                 System.out.println("Selected option: " + textField.getText());
                 password = textField.getText();
             });
-        } else if (label == "Security Answer"){
+        } else if (label == "Security Answer") {
             textField.setOnAction(event -> {
                 System.out.println("Selected option: " + textField.getText());
                 securityAnswer = textField.getText();
@@ -281,19 +289,18 @@ public class CreateAccountView {
         return hb;
     }
 
-    public static RadioButton createRadioButton(String label, ToggleGroup group){
+    public static RadioButton createRadioButton(String label, ToggleGroup group) {
         RadioButton Rb = new RadioButton(label);
         Rb.setToggleGroup(group);
         return Rb;
     }
 
-    public static HBox createHBox(int X, int Y, int spacing){
+    public static HBox createHBox(int X, int Y, int spacing) {
         HBox hb = new HBox();
         hb.setSpacing(spacing);
         hb.setLayoutX(X);
         hb.setLayoutY(Y);
         return hb;
     }
-
 
 }

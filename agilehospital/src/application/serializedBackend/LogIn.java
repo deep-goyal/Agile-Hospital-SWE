@@ -1,4 +1,4 @@
-package application;
+package application.serializedBackend;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class LogIn {
    
     public static boolean validateLoginInfo(String username, String password) {
-        String userFilePath = "userData" + File.separator + username + ".json";
+
+        String userFilePath = System.getProperty("user.dir") + File.separator + "userData" + File.separator + username + ".json";
         boolean userFileExists = Files.exists(Paths.get(userFilePath));
         String userPasswordOnFile = "";
 
@@ -58,5 +59,19 @@ public class LogIn {
         }
 
         return fileContent.substring(passwordStartIndex, passwordEndIndex);
+    }
+
+    public static int returnUserType(String fileName) {
+        char fileSuffix = fileName.charAt(0);
+        switch(fileSuffix) {
+            case 'p':
+                return 0;
+            case 'n':
+                return 1;
+            case 'd':
+                return 2;
+            default:
+                return -1;
+        }
     }
 }
