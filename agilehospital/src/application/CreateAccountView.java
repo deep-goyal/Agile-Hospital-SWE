@@ -3,6 +3,8 @@ package application;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import application.serializedBackend.SignUp;
+
 import application.serializedBackend.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,8 @@ public class CreateAccountView {
     private String password;
     private int securityQuestion;
     private String securityAnswer;
+
+    private SignUp signupInterface = new SignUp();
 
     public Pane init() {
 
@@ -171,7 +175,6 @@ public class CreateAccountView {
 
         Submit.setOnAction((ActionEvent event) -> {
             System.out.println("Button clicked!");
-            Patient.SignUp signupInterface = new Patient.SignUp();
 
             if (signupInterface.validateUserInput(userType, firstName, dateOfBirth, gender,
                     password, securityQuestion, securityAnswer)) {
