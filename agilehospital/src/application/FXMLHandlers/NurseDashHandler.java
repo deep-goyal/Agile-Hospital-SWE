@@ -35,11 +35,11 @@ public class NurseDashHandler {
     }
 
     public void viewinbox() throws IOException{
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/VisitHistory.fxml"));
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//        Main.primaryStage.setScene(scene);
-//        Main.primaryStage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/NurseMessages.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Main.primaryStage.setScene(scene);
+        Main.primaryStage.show();
     }
 
 

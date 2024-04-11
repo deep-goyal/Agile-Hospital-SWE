@@ -1,5 +1,6 @@
 package application.FXMLHandlers;
 
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,11 +45,11 @@ public class PatientCheckIn {
     //back button action
     public void back() throws IOException {
         //redirect to NurseDash.fxml
-        Stage stage = (Stage) backbtn.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("../FXMLFiles/NurseDash.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/NurseDash.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Main.primaryStage.setScene(scene);
+        Main.primaryStage.show();
     }
 
     //submit button action

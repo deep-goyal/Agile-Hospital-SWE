@@ -30,7 +30,7 @@ public class PatientDashHandler {
 
     //change info button action
     public void changeInfoFunc() throws IOException {
-        //redirect to PatientChangeInfo.fxml TODO-------------------
+        //redirect to PatientChangeInfo.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/ChangeContact.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -40,8 +40,8 @@ public class PatientDashHandler {
 
     //view inbox button action
     public void viewInboxFunc() throws IOException{
-        //redirect to PatientInbox.fxml todo--------------
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/ChangeContact.fxml"));
+        //redirect to PatientInbox.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/PatientMessages.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Main.primaryStage.setScene(scene);

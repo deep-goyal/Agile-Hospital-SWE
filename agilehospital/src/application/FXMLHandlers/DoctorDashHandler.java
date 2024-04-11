@@ -41,7 +41,7 @@ public class DoctorDashHandler {
     //view inbox button action TODO-----------
     public void viewInboxFunc() throws IOException {
         //redirect to PatientInbox.fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/VisitHistory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/DocMessages.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Main.primaryStage.setScene(scene);
