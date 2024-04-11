@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLHandlers.PatientCheckIn">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Check In" wrappingWidth="170.5625" BorderPane.alignment="TOP_LEFT">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </BorderPane.margin>
+      </Text>
+   </top>
+   <center>
+      <GridPane alignment="TOP_RIGHT" prefHeight="249.0" prefWidth="400.0" vgap="20.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="95.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="305.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="100.0" right="100.0" top="25.0" />
+         </BorderPane.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" textAlignment="CENTER" wrappingWidth="95.923828125" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Height" textAlignment="CENTER" wrappingWidth="95.21630859375" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight" textAlignment="CENTER" wrappingWidth="96.40625" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature" textAlignment="CENTER" wrappingWidth="95.740234375" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Blood Pressure" textAlignment="CENTER" wrappingWidth="93.9609375" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Allergies" textAlignment="CENTER" wrappingWidth="93.75048828125" GridPane.rowIndex="6" />
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="103.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="200.0" />
+               </GridPane.margin>
+               <children>
+                  <TextField fx:id="height" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="lbs" wrappingWidth="16.90087890625" />
+               </children>
+            </HBox>
+            <TextField fx:id="allergies" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Concerns" textAlignment="CENTER" wrappingWidth="95.74267578125" GridPane.rowIndex="7" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="204.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="103.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="weight" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ft" wrappingWidth="16.90087890625" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="200.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="103.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <TextField fx:id="temp" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*c" wrappingWidth="16.90087890625" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="200.0" />
+               </GridPane.margin>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PatientID" textAlignment="CENTER" wrappingWidth="95.21630859375" />
+            <TextField fx:id="patientID" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="200.0" />
+               </GridPane.margin>
+            </TextField>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="103.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <TextField fx:id="bp" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="mmHg" wrappingWidth="44.90087890625" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="170.0" />
+               </GridPane.margin>
+            </HBox>
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backbtn" mnemonicParsing="false" onAction="#back" text="Back" />
+            <Button fx:id="submitbtn" mnemonicParsing="false" onAction="#submit" text="Submit" />
+         </children>
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>

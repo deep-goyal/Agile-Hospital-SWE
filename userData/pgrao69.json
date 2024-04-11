@@ -1,0 +1,15 @@
+{
+  "username":"pgrao69",
+  "userType":"Patient",
+  "firstName":"Anmol",
+  "lastName":"Rao",
+  "dob":{
+    "year":2024,
+    "month":3,
+    "day":21
+  },
+  "gender":"Male",
+  "password":"Anmolrao#397",
+  "securityQuestion":"What was the name of your first school?",
+  "securityAnswer":"deep"
+}
