@@ -1,5 +1,6 @@
 package application.FXMLHandlers;
 
+import application.Main;
 import application.serializedBackend.Patient;
 import application.serializedBackend.Prescription;
 import application.serializedBackend.Visit;
@@ -32,11 +33,11 @@ public class PatientExamination {
     //back button action
     public void back() throws IOException {
         //redirect to DoctorDash.fxml
-        Stage stage = (Stage) backbtn.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("../FXMLFiles/DoctorDash.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/FXMLFiles/DoctorDash.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Main.primaryStage.setScene(scene);
+        Main.primaryStage.show();
     }
 
     //confirm button action
