@@ -68,7 +68,8 @@ public class Main extends Application {
         
         //create acc instance
         Button createAcc = new Button("Create Account");
-        createAcc.setOnAction(e -> switchToCreateAccount(primaryStage));
+        createAcc.setOnAction(e -> CreateAccountView.display(primaryStage));
+
         
 
         //alignment
@@ -124,6 +125,19 @@ public class Main extends Application {
                                 ex.printStackTrace();
                             }
 
+		        			char role = userNameText.charAt(0);
+		        			
+		        			if (role == 'n') {
+		        				NurseDashboard.display(primaryStage);//add
+		        				
+		        			} else if (role == 'p') {
+		        				System.out.println("Enter patient view");
+		        				
+		        			} else if (role ==  'd') {
+		        				System.out.println("Enter doctor view");
+		        			}
+		        			
+		        			successMessage.setText("Success, you are logged in");
 		                } else {
 		                	successMessage.setText("Login failed! Retry!!");
 		                }
@@ -142,7 +156,6 @@ public class Main extends Application {
         root.setCenter(vbox);
 
     	Scene scene = new Scene(root, 500, 400);
-
         primaryStage.setTitle("Agile Hospital");
         primaryStage.setScene(scene);
         primaryStage.show();

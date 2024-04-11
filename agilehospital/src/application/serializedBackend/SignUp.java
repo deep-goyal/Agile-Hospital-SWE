@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 
 public class SignUp {
+	private static final String DIRECTORY = System.getProperty("user.dir") + File.separator + "userData";
 
     // Backend endpoint that creates a user file
     public static String registerUser(int userType, String firstName, String lastName, LocalDate dateOfBirth, int gender, String password, int securityQuestion, String securityAnswer) throws IOException {
@@ -92,7 +93,7 @@ public class SignUp {
         uniqueUsername = baseUsername + String.format("%02d", day);
 
         // incrementing day number till unique is found
-        while (Files.exists(Paths.get("userData" + File.separator + uniqueUsername + ".json")) && counter < 100) {
+        while (Files.exists(Paths.get(DIRECTORY + File.separator + uniqueUsername + ".json")) && counter < 100) {
             day = (day + 1) % 100;      // Loops back to 0 after 99
             uniqueUsername = baseUsername + String.format("%02d", day);
             counter++;
@@ -158,20 +159,38 @@ public class SignUp {
 
     private static boolean createUserFile(String username, int userType, String firstName, String lastName, LocalDate dateOfBirth, int gender, String password, int securityQuestion, String securityAnswer) {
         // Final format: userData/username.json
-        String fileName = "userData" + File.separator + username + ".json";
+        String fileName = DIRECTORY + File.separator + username + ".json";
         boolean fileCreated = false;
 
-        // creating the file
+        //create userData directory if it doesn't exist
+        File directory = new File(DIRECTORY);
+		if (!directory.exists()) {
+			boolean created = directory.mkdir();
+			
+			 if (created) {
+                System.out.println("Directory created successfully!");
+            } else {
+                System.out.println("Failed to create directory.");
+            }
+		}
+        
+        //creating the file
         try {
             File makeFile = new File(fileName);
+            System.out.println("file made");
+            
             if (makeFile.createNewFile()) {
-                fileCreated = true;
+            	System.out.println("new file");
+            	fileCreated = true;
             } else {
-                return false;
+                System.out.print("error creating file");
+            	return false;
             }
         } catch (IOException e) {
-            return false;
+        	System.out.print("error file exception");
+        	return false;
         }
+        
 
         // writing to the file
         try {

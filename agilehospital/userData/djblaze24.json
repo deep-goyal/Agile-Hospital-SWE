@@ -1,0 +1,15 @@
+{
+"username":"djblaze24",
+"userType":"Doctor",
+"firstName":"Johnny",
+"lastName":"Blaze",
+"dob":{
+"year":2024,
+"month":3,
+"day":24
+},
+"gender":"Male",
+"password":"Ghost@rider13",
+"securityQuestion":"What year did you enter college?",
+"securityAnswer":"11975"
+}
